@@ -107,3 +107,6 @@ head(data)
 ```
 ?ICScure
 ```
+
+# Contact #
+**Kin Yau Wong** <kin-yau.wong@polyu.edu.hk>
