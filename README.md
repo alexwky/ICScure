@@ -38,13 +38,13 @@ BernsteinPolynomial(t = t, psi = psi, mint = 0, maxt = 5)
 <ins>**ICDASim**</ins>
 
 ```
-ICDASim(seed = NA, N, beta00, beta10, beta20, rho, PoAlpha, cs, zeta)
+ICDASim(seed = NA, n, beta00, beta10, beta20, rho, PoAlpha, cs, zeta)
 ```
 This function generate a data set according to the simulation studies in Lam et al. (2021) <DOI: 10.1002/sim.8910>. From the simulator, only 2 covariates will be generated. In order to reproduce the same dataset, seed can be input optionally. 
 
 Example:
 ```
-data<-ICDASim(seed = 1942, N = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho=0.5,PoAlpha = 0.5, zeta=0.75)
+data<-ICDASim(seed = 1942, n = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho=0.5,PoAlpha = 0.5, zeta=0.75)
 head(data)
 
 #   family        Ci delta x1         x2
@@ -63,8 +63,8 @@ Est.ICScure(data, rho, degree,
             weighting = TRUE, t.min = 0, t.max = NA, reltol = 10^-6, maxit = 1000, Hessian = TRUE)
 ```
 This function perform the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: 10.1002/sim.8910>
-`data` is a n x (p+3) matrix, where `n` is the sample size and `p` is the numbers of covariates. Since intercept does not include in the covarates, `data` with no covariates is also allowed. The format of `data` is as follow:
-**Cluster number**  | **Observation time**  | **Event Indicator** | **1<sup>st</sup> covariates** | **2<sup>nd</sup> covariates** | ... | **n<sup>th</sup> covariates**
+`data` is a n x (p+3) matrix, where `n` is the sample size and `p` is the numbers of covariates. Since intercept does not include in the covariates, `data` with no covariates is also allowed. The format of `data` is as follow:
+**Cluster Number**  | **Observation Time**  | **Event Indicator** | **1<sup>st</sup> covariates** | **2<sup>nd</sup> covariates** | ... | **n<sup>th</sup> covariates**
 ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 1  | 3.7322 | 1 | 1 | 0.0888 | ... | 1
 1  | 4.0000 | 1 | 0 | -0.4965 | ... | 0
@@ -73,7 +73,7 @@ This function perform the cluster-weighted GEE or GEE estimation of Lam et al. (
 
 Example:
 ```
-Dataset <- ICDASim(seed = 1942, N = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho=0.5,PoAlpha = 0.5, zeta=0.75)
+Dataset <- ICDASim(seed = 1942, n = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho=0.5,PoAlpha = 0.5, zeta=0.75)
 Result <- Est.ICScure(data=Dataset, rho=0.5, degree=3, weighting=FALSE)
 Result
 
@@ -114,3 +114,6 @@ Result
 
 # Contact #
 Dr. Wong Kin Yau, Alex <<kin-yau.wong@polyu.edu.hk>>
+
+# Reference #
+Lam, K. F., Lee, C. Y., Wong, K. Y., & Bandyopadhyay, D. (2021). Marginal analysis of current status data with informative cluster size using a class of semiparametric transformation cure models. Statistics in Medicine, 1–13. https://doi.org/10.1002/sim.8910
