@@ -63,8 +63,10 @@ Est.ICScure(data, rho, degree,
             weighting = TRUE, t.min = 0, t.max = NA, reltol = 10^-6, maxit = 1000, Hessian = TRUE)
 ```
 This function perform the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: 10.1002/sim.8910>
-`data` is a n x (p+3) matrix, where `n` is the sample size and `p` is the numbers of covariates. Since intercept does not include in the covariates, `data` with no covariates is also allowed. The format of `data` is as follow:
-**Cluster Number**  | **Observation Time**  | **Event Indicator** | **1<sup>st</sup> covariates** | **2<sup>nd</sup> covariates** | ... | **n<sup>th</sup> covariates**
+
+`data` is a `n x (p+3)` matrix, where `n` is the sample size and `p` is the number of covariates. The first column consists of cluster indices, the second column consist of the observation time, the third column consist of the event indicator, and the forth to the last columns consist of the covariates (not including the intercept). The set of covariates can be empty.The format of `data` is as follow:
+
+**Cluster Index**  | **Observation Time**  | **Event Indicator** | **1<sup>st</sup> covariates** | **2<sup>nd</sup> covariates** | ... | **n<sup>th</sup> covariates**
 ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 1  | 3.7322 | 1 | 1 | 0.0888 | ... | 1
 1  | 4.0000 | 1 | 0 | -0.4965 | ... | 0
@@ -107,13 +109,14 @@ Result
 
 # Help #
 
-**Est.ICScure()** is the main function that implements the I-Boost procedure. Details about the function can be found in the user manual:
+**Est.ICScure()** is the main function that perform the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: [10.1002/sim.891](https://doi.org/10.1002/sim.8910)>. Details about the function can be found in the user manual:
 ```
 ?ICScure
 ```
 
 # Contact #
-Dr. Wong Kin Yau, Alex <<kin-yau.wong@polyu.edu.hk>>
+Wong Kin Yau, Alex <<kin-yau.wong@polyu.edu.hk>>
 
 # Reference #
-Lam, K. F., Lee, C. Y., Wong, K. Y., & Bandyopadhyay, D. (2021). Marginal analysis of current status data with informative cluster size using a class of semiparametric transformation cure models. Statistics in Medicine, 1–13. https://doi.org/10.1002/sim.8910
+Lam, K. F., Lee, C. Y., Wong, K. Y., & Bandyopadhyay, D. (2021). Marginal analysis of current status data with informative cluster size using a class of semiparametric transformation cure models. Statistics in Medicine [online], DOI:10.1002/sim.8910
+
