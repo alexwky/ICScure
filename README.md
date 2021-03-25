@@ -1,10 +1,10 @@
 # ICScure #
-ICScure stand for <ins>**I**</ins>nformative <ins>**C**</ins>uster <ins>**S**</ins>ize <ins>**cure**</ins> model. ICScure is a package to perform estimation and inference for clustered current status data with informative cluster size using the method proposed by Lam et al. (2021) <DOI: [10.1002/sim.891](https://doi.org/10.1002/sim.8910)>. It is implemented in the R-package **ICScure**.
+ICScure (which stands for <ins>**I**</ins>nformative <ins>**C**</ins>uster <ins>**S**</ins>ize <ins>**cure**</ins>) is a package that performs estimation and inference for clustered current status data with informative cluster size using the method proposed by Lam et al. (2021) <DOI: [10.1002/sim.891](https://doi.org/10.1002/sim.8910)>.
 
-**ICScure** relies on the R-package `stats`, `stabledist`, `numDeriv`, `MASS`, which is hosted on CRAN.
+**ICScure** relies on the R-packages `stats`, `stabledist`, `numDeriv`, `MASS`, which is hosted on CRAN.
 
 # Installation #
-**IBoost** can be installed from github directly:
+**ICScure** can be installed from github directly:
 ```
 install.packages("devtools")
 library(devtools)
@@ -15,7 +15,7 @@ install_github("alexwky/ICScure")
 The package contains 3 functions:
 Functions  | Description
 ------------- | -------------
-BernsteinPolynomial  | Calculate the values of the Bernstein polynomial at time `t`.
+BernsteinPolynomial  | Calculate the values of a Bernstein polynomial at given time points.
 ICDASim  | Generate a data set according to the simulation studies in Lam et al. (2021) <DOI: [10.1002/sim.891](https://doi.org/10.1002/sim.8910)>
 Est.ICScure  |  Perform the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: [10.1002/sim.891](https://doi.org/10.1002/sim.8910)>
 
@@ -25,7 +25,7 @@ Est.ICScure  |  Perform the cluster-weighted GEE or GEE estimation of Lam et al.
 ```
 BernsteinPolynomial(t, psi, mint, maxt)
 ```
-This function evaluate the Bernstein polynomial at given time points `t` using user-provided coefficients `psi`, degree, and support `mint` `maxt`.
+This function evaluate the Bernstein polynomial at given time points `t` using user-provided coefficients `psi` and support (`mint`,`maxt`).
 
 Example:
 ```
@@ -40,7 +40,7 @@ BernsteinPolynomial(t = t, psi = psi, mint = 0, maxt = 5)
 ```
 ICDASim(seed = NA, n, beta00, beta10, beta20, rho, PoAlpha, cs, zeta)
 ```
-This function generate a data set according to the simulation studies in Lam et al. (2021) <DOI: 10.1002/sim.8910>. From the simulator, only 2 covariates will be generated. In order to reproduce the same dataset, seed can be input optionally. 
+This function generates a data set according to the simulation studies in Lam et al. (2021) <DOI: 10.1002/sim.8910>.
 
 Example:
 ```
@@ -62,11 +62,11 @@ head(data)
 Est.ICScure(data, rho, degree,
             weighting = TRUE, t.min = 0, t.max = NA, reltol = 10^-6, maxit = 1000, Hessian = TRUE)
 ```
-This function perform the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: 10.1002/sim.8910>
+This function performs the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: 10.1002/sim.8910>
 
-`data` is a `n x (p+3)` matrix, where `n` is the sample size and `p` is the number of covariates. The first column consists of cluster indices, the second column consist of the observation time, the third column consist of the event indicator, and the forth to the last columns consist of the covariates (not including the intercept). The set of covariates can be empty.The format of `data` is as follow:
+`data` is a `n x (p+3)` matrix, where `n` is the sample size and `p` is the number of covariates. The first column consists of cluster indices, the second column consists of the observation time, the third column consists of the event indicator, and the fourth to the last columns consist of the covariates (not including the intercept). The set of covariates can be empty. The format of `data` is as follow:
 
-**Cluster Index**  | **Observation Time**  | **Event Indicator** | **1<sup>st</sup> covariates** | **2<sup>nd</sup> covariates** | ... | **n<sup>th</sup> covariates**
+**Cluster Index**  | **Observation Time**  | **Event Indicator** | **1<sup>st</sup> covariates** | **2<sup>nd</sup> covariates** | ... | **p<sup>th</sup> covariates**
 ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 1  | 3.7322 | 1 | 1 | 0.0888 | ... | 1
 1  | 4.0000 | 1 | 0 | -0.4965 | ... | 0
@@ -109,7 +109,7 @@ Result
 
 # Help #
 
-**Est.ICScure()** is the main function that perform the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: [10.1002/sim.891](https://doi.org/10.1002/sim.8910)>. Details about the function can be found in the user manual:
+Details about the package can be found in the user manual:
 ```
 ?ICScure
 ```
