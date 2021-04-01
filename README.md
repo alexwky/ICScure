@@ -38,13 +38,13 @@ BernsteinPolynomial(t = t, psi = psi, mint = 0, maxt = 5)
 <ins>**ICDASim**</ins>
 
 ```
-ICDASim(seed = NA, n, beta00, beta10, beta20, rho, PoAlpha, cs, zeta)
+ICDASim(seed = NA, n, beta00, beta10, beta20, rho, gamma, cs)
 ```
 This function generates a data set according to the simulation studies in Lam et al. (2021) <DOI: 10.1002/sim.8910>.
 
 Example:
 ```
-data<-ICDASim(seed = 1942, n = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho=0.5,PoAlpha = 0.5, zeta=0.75)
+data <- ICDASim(seed = 1942, n = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho = 0.5, gamma = 0.5)
 head(data)
 
 #   family        Ci delta x1         x2
@@ -60,7 +60,7 @@ head(data)
   
 ```
 Est.ICScure(data, rho, degree,
-            weighting = TRUE, t.min = 0, t.max = NA, reltol = 10^-6, maxit = 1000, Hessian = TRUE)
+            weighting = TRUE, t.min = 0, t.max = NA, reltol = 10^-6, maxit = 1000, calSE = TRUE)
 ```
 This function performs the cluster-weighted GEE or GEE estimation of Lam et al. (2021) <DOI: 10.1002/sim.8910>
 
@@ -75,8 +75,8 @@ This function performs the cluster-weighted GEE or GEE estimation of Lam et al. 
 
 Example:
 ```
-Dataset <- ICDASim(seed = 1942, n = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho=0.5,PoAlpha = 0.5, zeta=0.75)
-Result <- Est.ICScure(data=Dataset, rho=0.5, degree=3, weighting=FALSE)
+Dataset <- ICDASim(seed = 1942, n = 100, beta00 = 0.5, beta10 = -1, beta20 = 1, cs = 40, rho = 0.5, gamma = 0.5)
+Result <- Est.ICScure(data = Dataset, rho = 0.5, degree = 3, weighting = TRUE)
 Result
 
 # $degree
