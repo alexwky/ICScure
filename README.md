@@ -66,7 +66,7 @@ This function performs the cluster-weighted GEE or GEE estimation of Lam et al. 
 
 `data` is a `n x (p+3)` matrix, where `n` is the sample size and `p` is the number of covariates. The first column consists of cluster indices, the second column consists of the observation time, the third column consists of the event indicator, and the fourth to the last columns consist of the covariates (not including the intercept). The set of covariates can be empty. The format of `data` is as follow:
 
-**Cluster Index**  | **Observation Time**  | **Event Indicator** | **1<sup>st</sup> covariates** | **2<sup>nd</sup> covariates** | ... | **p<sup>th</sup> covariates**
+**Cluster Index**  | **Observation Time**  | **Event Indicator** | **1<sup>st</sup> covariate** | **2<sup>nd</sup> covariate** | ... | **p<sup>th</sup> covariate**
 ------------- | ------------- | ------------- | ------------- | ------------- | ------------- | -------------
 1  | 3.7322 | 1 | 1 | 0.0888 | ... | 1
 1  | 4.0000 | 1 | 0 | -0.4965 | ... | 0
